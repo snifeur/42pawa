@@ -5,7 +5,7 @@
 // Login   <letohi_f@epitech.net>
 // 
 // Started on  Tue Feb 12 18:02:30 2013 florian letohic
-// Last update Tue Feb 12 18:44:32 2013 florian letohic
+// Last update Wed Feb 13 06:35:15 2013 loic caminondo
 //
 
 #ifndef		OPERAND_HPP__
@@ -14,7 +14,7 @@
 #include	"IOperand.hpp"
 
 template<typename T>
-class		Operand : public Ioperand
+class		Operand : public IOperand
 {
 private:
   T		Value;
