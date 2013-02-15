@@ -5,13 +5,14 @@
 // Login   <letohi_f@epitech.net>
 // 
 // Started on  Tue Feb 12 18:02:30 2013 florian letohic
-// Last update Wed Feb 13 06:35:15 2013 loic caminondo
+// Last update Fri Feb 15 15:15:15 2013 florian letohic
 //
 
 #ifndef		OPERAND_HPP__
 #define		OPERAND_HPP__
 
 #include	"IOperand.hpp"
+
 
 template<typename T>
 class		Operand : public IOperand
@@ -44,7 +45,19 @@ Operand::Operand(std::string val, eOperandType type) :
 
 int	Operand::getPrecision() const
 {
-  // return (this->);
+  switch (this->Type)
+    {
+    case Int8:
+      return (0);
+    case Int16:
+      return (0);
+    case Int32:
+      return (0);
+    case Float:
+      return (4);
+    case Double:
+      return (5);
+    }
 }
 
 eOperandType	Operand::getType() const
@@ -54,26 +67,32 @@ eOperandType	Operand::getType() const
 
 IOperand	*Operand::operator+(const IOperand &rhs)
 {
-
+  this->value += rhs->value;
+  this->Str = this->value;
 }
 
 IOperand	*Operand::operator-(const IOperand &rhs)
 {
-
+  this->value -= rhs->value;
+  this->Str = this->value;
 }
 
 IOperand	*Operand::operator*(const IOperand &rhs)
 {
-
+  this->value *= rhs->value;
+  this->Str = this->value;
 }
 
 IOperand	*Operand::operator/(const IOperand &rhs)
 {
-
+  this->value /= rhs->value;
+  this->Str = this->value;
 }
 
 IOperand	*Operand::operator%(const IOperand &rhs)
 {
-
+  this->value /= rhs->value;
+  this->Str = this->value;
 }
+
 #endif
