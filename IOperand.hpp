@@ -5,7 +5,7 @@
 // Login   <letohi_f@epitech.net>
 // 
 // Started on  Tue Feb 12 17:31:54 2013 florian letohic
-// Last update Tue Feb 12 18:27:59 2013 florian letohic
+// Last update Thu Feb 21 18:47:50 2013 florian letohic
 //
 
 #ifndef		IOPERAND_HPP__

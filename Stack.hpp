@@ -5,18 +5,20 @@
 // Login   <letohi_f@epitech.net>
 // 
 // Started on  Sun Feb 17 23:37:34 2013 florian letohic
-// Last update Wed Feb 20 16:44:23 2013 florian letohic
+// Last update Fri Feb 22 01:35:11 2013 florian letohic
 //
 
 #ifndef		STACK_HPP__
 #define		STACK_HPP__
 
 #include	<map>
+#include	<stdint>
 #include	"Operand.hpp"
 
 class		Stack
 {
 private:
+  std::deque<IOperand *>	values;
   std::map<std::string, void (Stack::*)()>	func;
   std::map<std::string, IOperand (Stack::*)(std::string const&)>	type_func;
 

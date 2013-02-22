@@ -5,7 +5,7 @@
 // Login   <letohi_f@epitech.net>
 // 
 // Started on  Tue Feb 12 18:02:30 2013 florian letohic
-// Last update Mon Feb 18 17:51:56 2013 florian letohic
+// Last update Thu Feb 21 18:51:36 2013 florian letohic
 //
 
 #ifndef		OPERAND_HPP__
@@ -25,13 +25,14 @@ public:
   Operand(std::string val, eOperandType type);
   int getPrecision() const;
   eOperandType getType() const;
+  std::string	toString() const
 
   IOperand * operator+(const IOperand &rhs);
   IOperand * operator-(const IOperand &rhs);
   IOperand * operator*(const IOperand &rhs);
   IOperand * operator/(const IOperand &rhs);
   IOperand * operator%(const IOperand &rhs);
-  ~IOperand() {}
+  ~Operand() {}
 };
 
 Operand::Operand(std::string val, eOperandType type) :
@@ -51,6 +52,11 @@ int	Operand::getPrecision() const
 eOperandType	Operand::getType() const
 {
   return (this->Type);
+}
+
+std::string	Operand::toString() const
+{
+  return (this->Str);
 }
 
 IOperand	*Operand::operator+(const IOperand &rhs)

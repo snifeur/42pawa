@@ -5,7 +5,7 @@
 // Login   <letohi_f@epitech.net>
 // 
 // Started on  Mon Feb 18 18:02:05 2013 florian letohic
-// Last update Wed Feb 20 16:16:07 2013 florian letohic
+// Last update Fri Feb 22 01:50:46 2013 florian letohic
 //
 
 #include	"Stack.hpp"
@@ -56,4 +56,112 @@ Ioperand      *create_float(std::string const & value)
 Ioperand      *create_double(std::string const & value)
 {
   return (new Operand(value, DOUBLE));
+}
+
+void	push(IOperand *value)
+{
+  this->values.push_front(value);
+}
+
+void  pop()
+{
+  this->values.pop_front(value); 
+}
+void  dump()
+{
+  std::deque<IOperand *>::iterator	it;
+
+  for (it = this->values.begin(); it < this->values.last(); ++it)
+    {
+      std::cout << this->toString() << std::endl;
+    }
+}
+void  assert(IOperand *Val)
+{
+  if (!(this->values.toString() == Val.toString() &&
+       this->values.getType() == Val.getType()))
+    {
+      return ;
+    } 
+}
+
+void  add();
+{
+  IOperand	*first;
+  IOperand	*second;
+  IOperand	*ret;
+
+  first = this->values;
+  this->values.pop_front();
+  second = this->value;
+  this->values.pop_front();
+  ret = first + second;
+  this->values.push_front(values);
+}
+
+void  sub()
+{
+  IOperand	*first;
+  IOperand	*second;
+  IOperand	*ret;
+
+  first = this->values;
+  this->values.pop_front();
+  second = this->value;
+  this->values.pop_front();
+  ret = first - second;
+  this->values.push_front(values);
+}
+
+void  mul()
+{
+  IOperand	*first;
+  IOperand	*second;
+  IOperand	*ret;
+
+  first = this->values;
+  this->values.pop_front();
+  second = this->value;
+  this->values.pop_front();
+  ret = first * second;
+  this->values.push_front(values);
+}
+
+void  div()
+{
+  IOperand	*first;
+  IOperand	*second;
+  IOperand	*ret;
+
+  first = this->values;
+  this->values.pop_front();
+  second = this->value;
+  this->values.pop_front();
+  ret = first / second;
+  this->values.push_front(values);
+}
+
+void  mod()
+{
+  IOperand	*first;
+  IOperand	*second;
+  IOperand	*ret;
+
+  first = this->values;
+  this->values.pop_front();
+  second = this->value;
+  this->values.pop_front();
+  ret = first % second;
+  this->values.push_front(Value);
+}
+
+void	print()
+{
+  char 	c;
+
+  if (this->values->getType() == INT8)
+    {
+      c = static_cast<char>(this->toString());
+      std::cout << c << std::endl;
+    }
 }
