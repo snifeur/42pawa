@@ -5,14 +5,14 @@
 // Login   <letohi_f@epitech.net>
 // 
 // Started on  Tue Feb 12 18:02:30 2013 florian letohic
-// Last update Thu Feb 21 18:51:36 2013 florian letohic
+// Last update Fri Feb 22 05:18:43 2013 florian letohic
 //
 
 #ifndef		OPERAND_HPP__
 #define		OPERAND_HPP__
 
 #include	"IOperand.hpp"
-
+#include	<sstream>
 
 template<typename T>
 class		Operand : public IOperand
@@ -25,7 +25,7 @@ public:
   Operand(std::string val, eOperandType type);
   int getPrecision() const;
   eOperandType getType() const;
-  std::string	toString() const
+  std::string	toString() const;
 
   IOperand * operator+(const IOperand &rhs);
   IOperand * operator-(const IOperand &rhs);
@@ -35,7 +35,8 @@ public:
   ~Operand() {}
 };
 
-Operand::Operand(std::string val, eOperandType type) :
+template<typename T>
+Operand<T>::Operand(std::string val, eOperandType type) :
   Value(val), Type(type)
 {
   std::stringstream	o;
@@ -44,46 +45,54 @@ Operand::Operand(std::string val, eOperandType type) :
   o >> this->value;
 };
 
-int	Operand::getPrecision() const
+template<typename T>
+int	Operand<T>::getPrecision() const
 {
   return (static_cast<int>(this->type));
 }
 
-eOperandType	Operand::getType() const
+template<typename T>
+eOperandType	Operand<T>::getType() const
 {
   return (this->Type);
 }
 
-std::string	Operand::toString() const
+template<typename T>
+std::string	Operand<T>::toString() const
 {
   return (this->Str);
 }
 
-IOperand	*Operand::operator+(const IOperand &rhs)
+template<typename T>
+IOperand	*Operand<T>::operator+(const IOperand &rhs)
 {
   this->value += rhs->value;
   this->Str = this->value;
 }
 
-IOperand	*Operand::operator-(const IOperand &rhs)
+template<typename T>
+IOperand	*Operand<T>::operator-(const IOperand &rhs)
 {
   this->value -= rhs->value;
   this->Str = this->value;
 }
 
-IOperand	*Operand::operator*(const IOperand &rhs)
+template<typename T>
+IOperand	*Operand<T>::operator*(const IOperand &rhs)
 {
   this->value *= rhs->value;
   this->Str = this->value;
 }
 
-IOperand	*Operand::operator/(const IOperand &rhs)
+template<typename T>
+IOperand	*Operand<T>::operator/(const IOperand &rhs)
 {
   this->value /= rhs->value;
   this->Str = this->value;
 }
 
-IOperand	*Operand::operator%(const IOperand &rhs)
+template<typename T>
+IOperand	*Operand<T>::operator%(const IOperand &rhs)
 {
   this->value /= rhs->value;
   this->Str = this->value;

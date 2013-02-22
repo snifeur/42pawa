@@ -5,27 +5,27 @@
 // Login   <letohi_f@epitech.net>
 // 
 // Started on  Mon Feb 18 18:02:05 2013 florian letohic
-// Last update Fri Feb 22 01:50:46 2013 florian letohic
+// Last update Fri Feb 22 05:45:00 2013 florian letohic
 //
 
 #include	"Stack.hpp"
 
 Stack::Stack()
 {
-  this->func["pop"] = &pop;
-  this->func["dump"] = &dump;
-  this->func["add"] = &add;
-  this->func["sub"] = &sub;
-  this->func["mul"] = &mul;
-  this->func["div"] = &div;
-  this->func["mod"] = &mod;
-  this->func["print"] = &print;
+  this->func["pop"] = &Stack::pop;
+  this->func["dump"] = &Stack::dump;
+  this->func["add"] = &Stack::add;
+  this->func["sub"] = &Stack::sub;
+  this->func["mul"] = &Stack::mul;
+  this->func["div"] = &Stack::div;
+  this->func["mod"] = &Stack::mod;
+  this->func["print"] = &Stack::print;
   
-  this->type_func["int8"] = &creat_int8;
-  this->type_func["int16"] = &creat_int16;
-  this->type_func["int32"] = &creat_int32;
-  this->type_func["double"] = &creat_double;
-  this->type_func["float"] = &creat_float;
+  this->type_func["int8"] = &Stack::create_int8;
+  this->type_func["int16"] = &Stack::create_int16;
+  this->type_func["int32"] = &Stack::create_int32;
+  this->type_func["double"] = &Stack::create_double;
+  this->type_func["float"] = &Stack::create_float;
 }
 
 Stack::~Stack()
@@ -33,135 +33,135 @@ Stack::~Stack()
   
 }
 
-Ioperand      *create_int8(std::string const & value)
+IOperand      *Stack::create_int8(std::string const & value)
 {
-  return (new Operand(value, INT8));
+  return (new Operand<int8_t>(value, Int8));
 }
 
-Ioperand      *create_int16(std::string const & value)
+IOperand      *Stack::create_int16(std::string const & value)
 {
-  return (new Operand(value, INT16));
+  return (new Operand<int16_t>(value, Int16));
 }
 
-Ioperand      *create_int32(std::string const & value)
+IOperand      *Stack::create_int32(std::string const & value)
 {
-  return (new Operand(value, INT32));
+  return (new Operand<int32_t>(value, Int32));
 }
 
-Ioperand      *create_float(std::string const & value)
+IOperand      *Stack::create_float(std::string const & value)
 {
-  return (new Operand(value, FLOAT));
+  return (new Operand<float>(value, Float));
 }
 
-Ioperand      *create_double(std::string const & value)
+IOperand      *Stack::create_double(std::string const & value)
 {
-  return (new Operand(value, DOUBLE));
+  return (new Operand<double>(value, Double));
 }
 
-void	push(IOperand *value)
+void	Stack::push(IOperand *value)
 {
   this->values.push_front(value);
 }
 
-void  pop()
+void  Stack::pop()
 {
-  this->values.pop_front(value); 
+  this->values.pop_front(); 
 }
-void  dump()
+void  Stack::dump()
 {
   std::deque<IOperand *>::iterator	it;
 
-  for (it = this->values.begin(); it < this->values.last(); ++it)
+  for (it = this->values.begin(); it < this->values.end(); ++it)
     {
-      std::cout << this->toString() << std::endl;
+      std::cout << this->values.front()->toString() << std::endl;
     }
 }
-void  assert(IOperand *Val)
+void  Stack::assert(IOperand *Val)
 {
-  if (!(this->values.toString() == Val.toString() &&
-       this->values.getType() == Val.getType()))
+  if (!(this->values.front()->toString() == Val->toString() &&
+	this->values.front()->getType() == Val->getType()))
     {
       return ;
     } 
 }
 
-void  add();
+void  Stack::add()
 {
   IOperand	*first;
   IOperand	*second;
   IOperand	*ret;
 
-  first = this->values;
+  first = this->values.front();
   this->values.pop_front();
-  second = this->value;
+  second = this->values.front();
   this->values.pop_front();
   ret = first + second;
-  this->values.push_front(values);
+  this->values.push_front(ret);
 }
 
-void  sub()
+void  Stack::sub()
 {
   IOperand	*first;
   IOperand	*second;
   IOperand	*ret;
 
-  first = this->values;
+  first = this->values.front();
   this->values.pop_front();
-  second = this->value;
+  second = this->values.front();
   this->values.pop_front();
   ret = first - second;
-  this->values.push_front(values);
+  this->values.push_front(ret);
 }
 
-void  mul()
+void  Stack::mul()
 {
   IOperand	*first;
   IOperand	*second;
   IOperand	*ret;
 
-  first = this->values;
+  first = this->values.front();
   this->values.pop_front();
-  second = this->value;
+  second = this->values.front();
   this->values.pop_front();
   ret = first * second;
-  this->values.push_front(values);
+  this->values.push_front(ret);
 }
 
-void  div()
+void  Stack::div()
 {
   IOperand	*first;
   IOperand	*second;
   IOperand	*ret;
 
-  first = this->values;
+  first = this->values.front();
   this->values.pop_front();
-  second = this->value;
+  second = this->values.front();
   this->values.pop_front();
   ret = first / second;
-  this->values.push_front(values);
+  this->values.push_front(ret);
 }
 
-void  mod()
+void  Stack::mod()
 {
   IOperand	*first;
   IOperand	*second;
   IOperand	*ret;
 
-  first = this->values;
+  first = this->values.front();
   this->values.pop_front();
-  second = this->value;
+  second = this->values.front();
   this->values.pop_front();
   ret = first % second;
-  this->values.push_front(Value);
+  this->values.push_front(ret);
 }
 
-void	print()
+void	Stack::print()
 {
   char 	c;
 
-  if (this->values->getType() == INT8)
+  if (this->getValues()->getType() == Int8)
     {
-      c = static_cast<char>(this->toString());
+      c = static_cast<char>(this->getValues()->toString());
       std::cout << c << std::endl;
     }
 }
